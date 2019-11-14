@@ -8,7 +8,6 @@
         transform: rotate(360deg);
     }
 }
-
 @-webkit-keyframes lds-disk {
     0% {
         -webkit-transform: rotate(0deg);
@@ -19,45 +18,34 @@
         transform: rotate(360deg);
     }
 }
-
 .lds-disk {
     position: relative;
 }
-
 .lds-disk > div div:nth-child(1) {
     position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 140px;
-    height: 140px;
+    top: 43.99999999999999px;
+    left: 43.99999999999999px;
+    width: 112.00000000000001px;
+    height: 112.00000000000001px;
     border-radius: 50%;
-    background: #042f35;
+    background: #000000;
 }
-
 .lds-disk > div div:nth-child(2) {
     position: absolute;
-    top: 39.800000000000004px;
-    left: 79px;
-    width: 42px;
-    height: 42px;
+    top: 45.12px;
+    left: 91.03999999999999px;
+    width: 17.92px;
+    height: 17.92px;
     border-radius: 50%;
     background: #fffd01;
     -webkit-animation: lds-disk 1s linear infinite;
     animation: lds-disk 1s linear infinite;
-    -webkit-transform-origin: 21px 60.199999999999996px;
-    transform-origin: 21px 60.199999999999996px;
+    -webkit-transform-origin: 8.96px 54.88px;
+    transform-origin: 8.96px 54.88px;
 }
-
 .lds-disk {
-    width: 200px !important;
-    height: 200px !important;
-    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
-    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    width: 95px !important;
+    height: 95px !important;
+    -webkit-transform: translate(-47.5px, -47.5px) scale(0.475) translate(47.5px, 47.5px);
+    transform: translate(-47.5px, -47.5px) scale(0.475) translate(47.5px, 47.5px);
 }
-
-<
-/
-style > <
-
-/
-div >
