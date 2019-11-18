@@ -2,7 +2,7 @@ export default class SwapiService {
 
     _apiBase = 'https://swapi.co/api';
 
-    async getResource(url) {
+    getResource = async (url) => {
         //await-ждем пока резултат этого промиса(fetch) не будет доступен.КАк только стает доступен,запишем в res
         const res = await fetch(`${this._apiBase}${url}`);
 
@@ -12,43 +12,60 @@ export default class SwapiService {
                 `, received ${res.status}`)
         }
         return await res.json();
-    }
+    };
 
-    async getAllPeople() {
+
+    getAllPeople = async () => {
         const res = await this.getResource(`/people/`);
-        return res.results.map(this._transformPerson);
-    }
+        return res.results
+            .map(this._transformPerson)
+    };
 
-    async getPerson(id) {
+    getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}/`);
         return this._transformPerson(person);
-    }
+    };
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
-        return res.results.map(this._transformPlanet);
-    }
+        return res.results
+            .map(this._transformPlanet)
+    };
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
-    }
+    };
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
-        return res.results.map(this._transformStarship);
-    }
+        return res.results
+            .map(this._transformStarship)
+    };
 
-    async getStarship(id) {
-        const starship = this.getResource(`/starships/${id}/`);
+    getStarship = async (id) => {
+        const starship = await this.getResource(`/starships/${id}/`);
         return this._transformStarship(starship);
-    }
+    };
 
-    _extractId(item) {
+
+    getPersonImage = ({id}) => {
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    };
+
+    getStarshipImage = ({id}) => {
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+    };
+
+    getPlanetImage = ({id}) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+    };
+
+    _extractId = (item) => {
         //используем регулярное выражение т.к. в нашем апи нет id(но есть url)
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
-    }
+    };
 
     //функция данных для улучшения кода в компоненте(чтобы не копировать и использовать одинаковый код)
     _transformPlanet = (planet) => {
@@ -81,8 +98,8 @@ export default class SwapiService {
             id: this._extractId(person),
             name: person.name,
             gender: person.gender,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         }
     }
 }

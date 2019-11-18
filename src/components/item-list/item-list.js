@@ -1,37 +1,46 @@
 import React, {Component} from 'react';
 
 import './item-list.css';
-import SwapiService from "../../services/swapi-service";
 import Loading from "../logo-loading/logo-loading";
 
 export default class ItemList extends Component {
 
-    swapiService = new SwapiService();
+//!!ТЕПЕРЬ этот список не берет данные с сервера, а просто отрисовывает список(людей, планет,кораблей)
+
 
     state = {
-        peopleList: null,
+        itemList: null,
     };
 
-    //отображаем список людей
+    //отображаем список
     componentDidMount() {
-        this.swapiService.getAllPeople()
-            .then((peopleList) => {
+
+        const {getData} = this.props;
+//1) возвращает промис(для организации асинхронного кода)
+        getData()
+        //2)получаем данные из вне (из getData)
+            .then((itemList) => {
+//3)устанавливает данные в качестве своего State
                 this.setState({
-                    peopleList
+//4)отрисовывает данные
+                    itemList
                 })
             })
     }
 
-//позволяет сказать что я кликнула по одному из персонажей в списке item-list
-    /*для каждого элемента массива создаем лист-item,у которого есть уникальный ключ(id)
-    персонажа и при нажатии на строчку мы вызываем функцию */
+
     renderItems(arr) {
-        return arr.map(({id, name}) => { //({id, name}) вместо (person)
+        return arr.map((item) => {
+            // вместо const label = this.props.renderItem(item); чтобы улучшить код в app
+            //children-обращение к тому что мы передали в теле элемента(в ItemList в app)
+            const label = this.props.children(item);
+            const {id} = item;
+
             return (
                 <li className="list-group-item"
                     key={id}
-                    onClick = {() => this.props.onItemSelected(id)}>
-                    {name}
+                    onClick={() => this.props.onItemSelected(id)}>
+                    {label}
                 </li>
             )
         })
@@ -39,12 +48,12 @@ export default class ItemList extends Component {
 
 
     render() {
-        const {peopleList} = this.state;
-        if (!peopleList) {
+        const {itemList} = this.state;
+        if (!itemList) {
             return <Loading/>
         }
 
-        const items = this.renderItems(peopleList);
+        const items = this.renderItems(itemList);
 
         return (
             <ul className="item-list list-group">
