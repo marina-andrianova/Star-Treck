@@ -18,11 +18,11 @@ export default class App extends Component {
                     <Header/>
                     <RandomPlanet/>
                     <Route path="/"
-                           render={()=><h2>Welcome to my project StarDB</h2>}
-                           exact />
-                    <Route path="/people" component={PeoplePage}/>
-                    <Route path="/planets" component={PlanetsPage}/>
-                    <Route path="/starships" component={StarshipsPage}/>
+                           render={() => <h2>Welcome to my project StarDB</h2>}
+                           exact/>
+                    <Route path="/people/:id?" component={PeoplePage}/>
+                    <Route path="/planets/:id?" component={PlanetsPage}/>
+                    <Route path="/starships/:id?" component={StarshipsPage}/>
 
                 </div>
             </Router>

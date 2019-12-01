@@ -1,24 +1,19 @@
-import React, { Component } from 'react';
-import { StarshipDetails, StarshipList } from '../starwars-component/index';
-import Row from '../row/row';
+import React from 'react';
+import { StarshipList, StarshipDetails} from '../starwars-component/index';
+import {withRouter} from 'react-router-dom';
+import Row from "../row/row";
+//просто отображат список космических кораблей и при клике выводит корабль на который нажали
+//теперь при нажатии переходим на страничку одного конкретного элемента
+//Id хранится как часть адреса страницы
+const StarshipsPage = ({history, match}) => {
+    const {id} = match.params;
+    return (
+        <Row
+            left={<StarshipList onItemSelected={(id)=>history.push(id)}/>}
+            right={<StarshipDetails itemId={id}/>}/>
+    );
+};
 
-export default class StarshipsPage extends Component {
 
-    state = {
-        selectedItem: null
-    };
 
-    onItemSelected = (selectedItem) => {
-        this.setState({ selectedItem });
-    };
-
-    render() {
-        const { selectedItem } = this.state;
-
-        return (
-            <Row
-                left={<StarshipList onItemSelected={this.onItemSelected} />}
-                right={<StarshipDetails itemId={selectedItem} />} />
-        );
-    }
-}
+export default withRouter(StarshipsPage);
