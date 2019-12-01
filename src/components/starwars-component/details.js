@@ -14,6 +14,9 @@ const PersonDetails = ({itemId}) => {
                          getImageUrl={getPersonImage}>
         <Record field="gender" label="Gender"/>
         <Record field="eyeColor" label="Eye Color"/>
+        <Record field="birthYear" label="Birth Year"/>
+        <Record field="mass" label="Mass"/>
+        <Record field="height" label="Height"/>
     </ItemDetails>);
 };
 const PlanetDetails = ({itemId}) => {
@@ -24,6 +27,8 @@ const PlanetDetails = ({itemId}) => {
         <Record field="population" label="Population" />
         <Record field="rotationPeriod" label="Rotation Period" />
         <Record field="diameter" label="Diameter" />
+        <Record field="climate" label="Climate" />
+        <Record field="terrain" label="Terrain" />
     </ItemDetails>);
 };
 const StarshipDetails = ({itemId}) => {
@@ -34,6 +39,7 @@ const StarshipDetails = ({itemId}) => {
         <Record field="model" label="Model"/>
         <Record field="length" label="Length"/>
         <Record field="costInCredits" label="Cost"/>
+        <Record field="passengers" label="Passengers"/>
     </ItemDetails>);
 };
 
